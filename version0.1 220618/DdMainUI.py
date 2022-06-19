@@ -14,7 +14,7 @@ from mainWindow import Ui_MainWindow
 # imports文件夹中是自己编写的py程序，这部分在nuitka打包中编译成C语言，库函数则不编译
 # 由于ddplay.py中的videoPlayWindow类继承了本文件的userUI类，因此对本文件的改动需同样改动imports中的对应文件
 
-isDebug = False  # 标记是否需要debug（是否在pycharm中调试），如果是则为True，相对路径定位会有区别
+isDebug = True  # 标记是否需要debug（是否在pycharm中调试），如果是则为True，相对路径定位会有区别
 
 
 class DdMainUI(QMainWindow, Ui_MainWindow):
@@ -32,8 +32,9 @@ class DdMainUI(QMainWindow, Ui_MainWindow):
         # self.msgbox = QMessageBox()
         # self.msgbox.setStyleSheet("background-color: #222225; color: white")
 
-        self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint | Qt.WindowSystemMenuHint |
-                            Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint)
+        # self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint | Qt.WindowSystemMenuHint |
+        #                     Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint)
+        self.setWindowFlags(Qt.Tool | Qt.FramelessWindowHint | Qt.WindowSystemMenuHint)
         # 去掉窗口边框，不在任务栏显示图标
         self.toolButton.clicked.connect(self.openmp4)
         self.minimizeButton.clicked.connect(self.mini)
@@ -68,8 +69,10 @@ class DdMainUI(QMainWindow, Ui_MainWindow):
             self.normal_window()
 
     def normal_window(self):
-        self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint | Qt.WindowSystemMenuHint |
-                            Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint)
+        # self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint | Qt.WindowSystemMenuHint |
+        #                     Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint)
+        self.setWindowFlags(Qt.Tool | Qt.FramelessWindowHint | Qt.WindowSystemMenuHint)
+        # self.setWindowFlags(Qt.Tool)
         self.showNormal()
         self.setAttribute(Qt.WA_Mapped)
 
@@ -128,7 +131,8 @@ class DdMainUI(QMainWindow, Ui_MainWindow):
 
     def openmp4(self):
         try:
-            self.path, filetype = QFileDialog.getOpenFileName(None, "选择文件", '.',
+            # 下面第一个参数不能是None，否则有可能程序崩溃
+            self.path, filetype = QFileDialog.getOpenFileName(self, "选择文件", '.',
                                                               "视频文件(*.AVI;*.mov;*.rmvb;*.rm;*.FLV;"
                                                               "*.mp4;*.3GP)")
             # ;;All Files (*)
