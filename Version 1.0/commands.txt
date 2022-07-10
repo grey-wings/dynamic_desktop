@@ -1,0 +1,8 @@
+
+pyinstaller --distpath ./release/DdPlay/dist --workpath ./release/DdPlay/build -n DdPlay --specpath ./release/Ddplay --noconsole -i ./favicon.ico DdPlayUI.py
+
+pyinstaller --distpath ./release/DdMain/dist --workpath ./release/DdMain/build -n DdMain --specpath ./release/DdMain --noconsole -i ./favicon.ico DdMainUI.py
+
+pyinstaller --distpath ./out_release/DdPlay/dist --workpath ./out_release/DdPlay/build -n DdPlay --specpath ./out_release/Ddplay --noconsole -i ./favicon.ico DdPlayUI.py
+
+pyinstaller --distpath ./out_release/DdMain/dist --workpath ./out_release/DdMain/build -n DdMain --specpath ./out_release/DdMain --noconsole -i ./favicon.ico DdMainUI.py
