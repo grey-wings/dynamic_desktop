@@ -14,3 +14,6 @@ code文件夹是试验版（仅备份），version0.1初版，version1.0是正�
 桌面图标SHELLDLL_DefView本来在Progman窗口下：  
 ![image](https://user-images.githubusercontent.com/74122331/178148371-fb943122-bce1-44f8-be0c-fb77296e5559.png)  
 windows有多个WorkerW窗口。对Progman发送消息0x052C（为什么是这个数字不知道）可以让SHELLDLL_DefView转移到一个workerW下面（这个workerW是新生成的还是本来就有的就不知道了），记这个workerW窗口为h。同时还会生成一个Z序在这个workerW之后的workerW窗口，记为hwnd_WorkW_next。只要找到这个hwnd_WorkW_next，生成一个窗口用于播放视频文件，并将窗口挂在hwnd_WorkW_next的子节点即可。  
+程序执行后，应有如下窗口分布：  
+![O F(Q3F%%JIOG35FT@((EJF](https://user-images.githubusercontent.com/74122331/178148590-7672d5b5-dbde-4c23-97e7-56f07fb75660.png)  
+其中第一个workerW是挂着桌面图标的窗口，第二个workerW是挂着mp4播放器的窗口。  
